@@ -8,7 +8,7 @@ export default function CalenderDates({
   const { selectedDate, setSelectedDate } = useStore();
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-  const isTodaysDate = (index) =>
+  const isSelectedDate = (index) =>
     selectedDate.getDate() === index + 1 &&
     selectedDate.getMonth() === currentMonth &&
     selectedDate.getFullYear() === currentYear;
@@ -21,7 +21,7 @@ export default function CalenderDates({
     <button
       key={i + 1}
       className={`rounded-full w-8 h-8 text-center text-sm transition-colors hover:bg-blue-200 ${
-        isTodaysDate(i)
+        isSelectedDate(i)
           ? "bg-blue-600 text-white hover:text-black"
           : "text-black"
       }`}

@@ -42,7 +42,7 @@ export default function DatePicker() {
     <div className="m-auto mt-20 bg-background rounded-lg border p-6 w-full max-w-md">
       <div className="flex items-center justify-between mb-4">
         <button
-          className="p-2 rounded-full hover:bg-black hover:text-white"
+          className="p-2 rounded-full transition-colors hover:bg-blue-600 hover:text-white"
           onClick={handlePreviousMonth}
         >
           <MdOutlineNavigateBefore className="w-4 h-4" />
@@ -54,7 +54,7 @@ export default function DatePicker() {
           })}
         </div>
         <button
-          className="p-2 rounded-full hover:bg-black hover:text-white"
+          className="p-2 rounded-full transition-colors hover:bg-blue-600 hover:text-white"
           onClick={handleNextMonth}
         >
           <MdOutlineNavigateNext className="w-4 h-4" />
