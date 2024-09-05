@@ -1,10 +1,6 @@
 import useStore from "../_store/useStore";
 
-export default function CalenderDates({
-  currentMonth,
-  currentYear,
-  recurringOptionValue,
-}) {
+export default function CalenderDates({ currentMonth, currentYear }) {
   const { selectedDate, setSelectedDate } = useStore();
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 

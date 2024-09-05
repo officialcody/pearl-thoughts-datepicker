@@ -4,9 +4,15 @@ import { IoCalendar } from "react-icons/io5";
 import { useState } from "react";
 import useStore from "../_store/useStore";
 
-export default function Task({ setOpenModal, openModal }) {
+export default function Task() {
   const [task, setTask] = useState("");
-  const { tasks, addTask, removeTask } = useStore();
+  const {
+    tasks,
+    addTask,
+    removeTask,
+    showRecurrenceModal,
+    setShowRecurrenceModal,
+  } = useStore();
 
   const handleAddTask = () => {
     addTask({ name: task });
@@ -14,7 +20,7 @@ export default function Task({ setOpenModal, openModal }) {
   };
 
   const handleCalenderClick = (event) => {
-    setOpenModal(!openModal);
+    setShowRecurrenceModal(!showRecurrenceModal);
   };
 
   return (
@@ -35,7 +41,7 @@ export default function Task({ setOpenModal, openModal }) {
           onClick={handleCalenderClick}
         >
           <IoCalendar
-            className={openModal ? "text-gray-900" : "text-gray-400"}
+            className={showRecurrenceModal ? "text-gray-900" : "text-gray-400"}
           />
         </button>
         <input

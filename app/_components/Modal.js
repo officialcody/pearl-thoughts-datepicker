@@ -1,13 +1,14 @@
-import RecurrenceOptions from "./RecurrenceOptions";
+import useStore from "../_store/useStore";
 
-export default function Modal({ openModal, setOpenModal, children }) {
+export default function Modal({ children }) {
+  const { showRecurrenceModal, setShowRecurrenceModal } = useStore();
   const handleModalClose = () => {
-    setOpenModal(!openModal);
+    setShowRecurrenceModal(!showRecurrenceModal);
   };
   return (
     <div
       className={
-        openModal
+        showRecurrenceModal
           ? `relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg`
           : "hidden"
       }

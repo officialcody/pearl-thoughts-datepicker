@@ -1,24 +1,17 @@
 "use client";
 
-import { useState } from "react";
-import CalenderDates from "./CalenderDates";
 import { MdOutlineNavigateNext, MdOutlineNavigateBefore } from "react-icons/md";
+import CalenderDates from "./CalenderDates";
 import Task from "./Task";
 import Modal from "./Modal";
 import RecurrenceOptions from "./RecurrenceOptions";
 import useStore from "../_store/useStore";
 
 export default function DatePicker() {
-  const { selectedDate } = useStore();
-
-  const [currentMonth, setCurrentMonth] = useState(selectedDate.getMonth());
-  const [currentYear, setCurrentYear] = useState(selectedDate.getFullYear());
+  const { currentMonth, currentYear, setCurrentMonth, setCurrentYear } =
+    useStore();
 
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
-
-  const [openModal, setOpenModal] = useState(false);
-  const [recurringOptionValue, setRecurringOptionValue] = useState("once");
-  const [recurringOptionFrequency, setRecurringOptionFrequency] = useState(1);
 
   const handlePreviousMonth = () => {
     if (currentMonth === 0) {
@@ -71,20 +64,11 @@ export default function DatePicker() {
             {" "}
           </div>
         ))}
-        <CalenderDates
-          currentYear={currentYear}
-          currentMonth={currentMonth}
-          recurringOptionValue={recurringOptionValue}
-        />
+        <CalenderDates currentYear={currentYear} currentMonth={currentMonth} />
       </div>
-      <Task openModal={openModal} setOpenModal={setOpenModal} />
-      <Modal openModal={openModal} setOpenModal={setOpenModal}>
-        <RecurrenceOptions
-          recurringOptionValue={recurringOptionValue}
-          recurringOptionFrequency={recurringOptionFrequency}
-          setRecurringOptionFrequency={setRecurringOptionFrequency}
-          setRecurringOptionValue={setRecurringOptionValue}
-        />
+      <Task />
+      <Modal>
+        <RecurrenceOptions />
       </Modal>
     </div>
   );

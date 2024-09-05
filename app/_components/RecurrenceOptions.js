@@ -1,9 +1,12 @@
-export default function RecurrenceOptions({
-  recurringOptionValue,
-  setRecurringOptionValue,
-  recurringOptionFrequency,
-  setRecurringOptionFrequency,
-}) {
+import useStore from "../_store/useStore";
+
+export default function RecurrenceOptions() {
+  const {
+    recurringOptionValue,
+    setRecurringOptionValue,
+    recurringOptionFrequency,
+    setRecurringOptionFrequency,
+  } = useStore();
   const recurringOptionValueChangeHandler = (event) => {
     setRecurringOptionValue(event.target.value);
   };
