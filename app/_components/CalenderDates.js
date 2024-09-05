@@ -15,7 +15,7 @@ export default function CalenderDates({
   return Array.from({ length: daysInMonth }, (_, i) => (
     <button
       key={i + 1}
-      className={`rounded-full w-8 h-8 text-center text-sm transition-colors hover:bg-muted ${
+      className={`rounded-full w-8 h-8 text-center text-sm transition-colors hover:bg-gray-200 ${
         isTodaysDate(i) ? "bg-blue-600 text-white" : "text-black"
       }`}
     >

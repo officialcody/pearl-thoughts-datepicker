@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import ChevronRightIcon from "./ChevronRightIcon";
-import ChevronLeftIcon from "./ChevronLeftIcon";
 import CalenderDates from "./CalenderDates";
+import { MdOutlineNavigateNext, MdOutlineNavigateBefore } from "react-icons/md";
+import Task from "./Task";
+import Modal from "./Modal";
 import RecurrenceOptions from "./RecurrenceOptions";
 
 export default function DatePicker() {
@@ -13,7 +14,8 @@ export default function DatePicker() {
 
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
 
-  const [recurringOptionValue, setRecurringOptionValue] = useState("");
+  const [openModal, setOpenModal] = useState(false);
+  const [recurringOptionValue, setRecurringOptionValue] = useState("once");
   const [recurringOptionFrequency, setRecurringOptionFrequency] = useState(1);
 
   const handlePreviousMonth = () => {
@@ -40,7 +42,7 @@ export default function DatePicker() {
           className="p-2 rounded-full hover:bg-black hover:text-white"
           onClick={handlePreviousMonth}
         >
-          <ChevronLeftIcon className="w-4 h-4" />
+          <MdOutlineNavigateBefore className="w-4 h-4" />
         </button>
         <div className="text-lg font-medium">
           {new Date(currentYear, currentMonth).toLocaleString("default", {
@@ -52,7 +54,7 @@ export default function DatePicker() {
           className="p-2 rounded-full hover:bg-black hover:text-white"
           onClick={handleNextMonth}
         >
-          <ChevronRightIcon className="w-4 h-4" />
+          <MdOutlineNavigateNext className="w-4 h-4" />
         </button>
       </div>
       <div className="grid grid-cols-7 gap-2">
@@ -74,12 +76,15 @@ export default function DatePicker() {
           recurringOptionValue={recurringOptionValue}
         />
       </div>
-      <RecurrenceOptions
-        recurringOptionValue={recurringOptionValue}
-        setRecurringOptionValue={setRecurringOptionValue}
-        recurringOptionFrequency={recurringOptionFrequency}
-        setRecurringOptionFrequency={setRecurringOptionFrequency}
-      />
+      <Task openModal={openModal} setOpenModal={setOpenModal} />
+      <Modal openModal={openModal} setOpenModal={setOpenModal}>
+        <RecurrenceOptions
+          recurringOptionValue={recurringOptionValue}
+          recurringOptionFrequency={recurringOptionFrequency}
+          setRecurringOptionFrequency={setRecurringOptionFrequency}
+          setRecurringOptionValue={setRecurringOptionValue}
+        />
+      </Modal>
     </div>
   );
 }
