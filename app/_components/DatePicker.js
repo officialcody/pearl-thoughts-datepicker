@@ -3,8 +3,8 @@
 import { useState } from "react";
 import ChevronRightIcon from "./ChevronRightIcon";
 import ChevronLeftIcon from "./ChevronLeftIcon";
-import Calender from "./CalenderDates";
 import CalenderDates from "./CalenderDates";
+import RecurrenceOptions from "./RecurrenceOptions";
 
 export default function DatePicker() {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -12,6 +12,9 @@ export default function DatePicker() {
   const [currentYear, setCurrentYear] = useState(selectedDate.getFullYear());
 
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+
+  const [recurringOptionValue, setRecurringOptionValue] = useState("");
+  const [recurringOptionFrequency, setRecurringOptionFrequency] = useState(1);
 
   const handlePreviousMonth = () => {
     if (currentMonth === 0) {
@@ -68,8 +71,15 @@ export default function DatePicker() {
           setSelectedDate={setSelectedDate}
           currentYear={currentYear}
           currentMonth={currentMonth}
+          recurringOptionValue={recurringOptionValue}
         />
       </div>
+      <RecurrenceOptions
+        recurringOptionValue={recurringOptionValue}
+        setRecurringOptionValue={setRecurringOptionValue}
+        recurringOptionFrequency={recurringOptionFrequency}
+        setRecurringOptionFrequency={setRecurringOptionFrequency}
+      />
     </div>
   );
 }
