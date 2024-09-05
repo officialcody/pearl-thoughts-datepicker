@@ -6,9 +6,11 @@ import { MdOutlineNavigateNext, MdOutlineNavigateBefore } from "react-icons/md";
 import Task from "./Task";
 import Modal from "./Modal";
 import RecurrenceOptions from "./RecurrenceOptions";
+import useStore from "../_store/useStore";
 
 export default function DatePicker() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const { selectedDate } = useStore();
+
   const [currentMonth, setCurrentMonth] = useState(selectedDate.getMonth());
   const [currentYear, setCurrentYear] = useState(selectedDate.getFullYear());
 
@@ -26,6 +28,7 @@ export default function DatePicker() {
       setCurrentMonth(currentMonth - 1);
     }
   };
+
   const handleNextMonth = () => {
     if (currentMonth === 11) {
       setCurrentMonth(0);
@@ -69,8 +72,6 @@ export default function DatePicker() {
           </div>
         ))}
         <CalenderDates
-          selectedDate={selectedDate}
-          setSelectedDate={setSelectedDate}
           currentYear={currentYear}
           currentMonth={currentMonth}
           recurringOptionValue={recurringOptionValue}
