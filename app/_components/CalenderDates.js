@@ -16,7 +16,7 @@ export default function CalenderDates({
     <button
       key={i + 1}
       className={`rounded-full w-8 h-8 text-center text-sm transition-colors hover:bg-muted ${
-        isTodaysDate(i) ? "bg-black text-white" : "text-black"
+        isTodaysDate(i) ? "bg-blue-600 text-white" : "text-black"
       }`}
     >
       {i + 1}
