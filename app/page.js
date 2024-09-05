@@ -1,5 +1,9 @@
+import DatePicker from "./_components/DatePicker";
+
 export default function Home() {
   return (
-    <main className="flex text-4xl justify-center font-bold">Hello World</main>
+    <main className="flex justify-center">
+      <DatePicker />
+    </main>
   );
 }
